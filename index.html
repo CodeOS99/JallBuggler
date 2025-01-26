@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jall Buggler</title>
+  <style>
+    .buttons {
+      margin-top: -5px; /* This shifts the buttons up slightly */
+    }
+  </style>
+</head>
+<body>
+  <h1>Jall Buggler</h1>
+  <p id="s">Score: 0</p>
+  <p>Press k to spawn a ball.</p>
+  <p id="m">$0</p>
+  <button onclick="_a()">↓ g (10)</button>
+    <button onclick="_b()">↑ MAX BALLS (10)</button>
+    <button onclick="_c()">↑ BALL R (10)</button>
+    <button onclick="_d()">↑ CURSOR R (10)</button>
+    <button onclick="_e()">↑ PIERCE (10)</button>
+    <button onclick="_f()">↑ MONEY (10)</button>
+    <button onclick="_j()">GAMBLE</button>
+    <p>Upgrades here ↑</p>
+
+    <canvas id="q" width="900" height="600"></canvas>
+
+    <script>const t=document.getElementById("q"),e=t.getContext("2d");let n=.35,o=[],l=0,i=1,a=20,c=60,d=0,r=0,h=1,u=1,f=0,s=50,w=1,y=[10,10,10,10,10,10],v=[10,10,10,10,10,10],m=0;function g(t){s-=v[t],y[t]=v[t],v[t]=Math.ceil(1.5*v[t]),M()}function M(){document.getElementById("s").textContent=`Score: ${f}`,document.getElementById("m").textContent=`Money: ${s}`}function b(t,n,o,l,i){e.shadowColor="rgba(255, 255, 255, 0.7)",e.shadowBlur=20,e.beginPath(),e.ellipse(t,n,o,l,0,0,2*Math.PI),e.fillStyle=i,e.fill(),e.closePath(),e.shadowBlur=0}function x(t=0,e=100){return Math.floor(Math.random()*(e-t+1))+t}window._a=function(){s>=v[0]&&(n*=.75,g(0))},window._b=function(){s>=v[1]&&(i+=2,g(1))},window._c=function(){s>=v[2]&&(a+=5,g(2))},window._d=function(){s>=v[3]&&(c+=5,g(3))},window._e=function(){s>=v[4]&&(u+=2,g(4))},window._f=function(){s>=v[5]&&(w+=2,g(5))},document.addEventListener("keydown",(e=>"k"==e.key&&void(l<i&&(o.push({x:x(a+100,t.width-a-50),y:x(a-100,t.height+a+50),vel:[x(-10,10),x(-15,-10)],fillCol:`rgb(${x(0,255)}, ${x(0,255)}, ${x(0,255)})`,rX:a,rY:a}),l++)))),t.addEventListener("mousemove",(function(e){const n=t.getBoundingClientRect();d=e.clientX-n.left,r=e.clientY-n.top})),t.addEventListener("mousedown",(function(){h=u,o.forEach((t=>{const e=d-t.x,n=r-t.y,o=Math.atan2(n,e),l=t.x+t.rX*Math.cos(o),i=t.y+t.rY*Math.sin(o);Math.hypot(l-d,i-r)<=c+5&&(t.vel=[x(-10,-20),x(-10,-20)],f++,s+=w,M(),h--)}))})),function i(){setTimeout((()=>{e.fillStyle="black",e.fillRect(0,0,t.width,t.height),o.forEach(((e,i)=>{e.vel[1]+=n,(e.x<e.rX||e.x>t.width-e.rX)&&(e.vel[0]*=-1),e.y<e.rY&&(e.vel[1]=Math.abs(e.vel[1])),e.y>t.width&&(m++,o.splice(i,1),m==l&&(alert("You fumbled your balls!"),f=l=m=0,M())),e.x+=e.vel[0],e.y+=e.vel[1],e.rX=a+Math.abs(e.vel[0])/2,e.rY=a+Math.abs(e.vel[1])/2})),o.forEach((t=>b(t.x,t.y,t.rX,t.rY,t.fillCol))),b(d,r,c,c,"rgba(255, 50, 50, 0.5)"),i()}),10)}();</script>
+</body>
+</html>
