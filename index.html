@@ -3,27 +3,28 @@
 <head>
   <title>Jall Buggler</title>
   <style>
-    .buttons {
-      margin-top: -5px; /* This shifts the buttons up slightly */
-    }
+    body{font-family:fantasy;background:#2c2f38;color:#fff;display:flex;flex-direction:column;align-items:center}
+    button{background:#444;color:#fff}
+    button:hover{background:#441}
+    canvas{border:1px}
   </style>
 </head>
 <body>
+
   <h1>Jall Buggler</h1>
-  <p id="s">Score: 0</p>
-  <p>Press k to spawn a ball.</p>
+  <div>
+    <button onclick="_a()" id="_a">↓g(10)</button>
+    <button onclick="_b()" id="_b">↑MAX BALLS(10)</button>
+    <button onclick="_c()" id="_c">↑BALL R(10)</button>
+    <button onclick="_d()" id="_d">↑CURSOR R(10)</button>
+    <button onclick="_e()" id="_e">↑PIERCE(10)</button>
+    <button onclick="_f()" id="_f">↑MONEY(10)</button>
+    <button onclick="_j()" id="_j">GAMBLE</button>
+  </div>
+  <p id="s">Score:0</p>
   <p id="m">$0</p>
-  <button onclick="_a()">↓ g (10)</button>
-    <button onclick="_b()">↑ MAX BALLS (10)</button>
-    <button onclick="_c()">↑ BALL R (10)</button>
-    <button onclick="_d()">↑ CURSOR R (10)</button>
-    <button onclick="_e()">↑ PIERCE (10)</button>
-    <button onclick="_f()">↑ MONEY (10)</button>
-    <button onclick="_j()">GAMBLE</button>
-    <p>Upgrades here ↑</p>
-
-    <canvas id="q" width="900" height="600"></canvas>
-
-    <script>const t=document.getElementById("q"),e=t.getContext("2d");let n=.35,o=[],l=0,i=1,a=20,c=60,d=0,r=0,h=1,u=1,f=0,s=50,w=1,y=[10,10,10,10,10,10],v=[10,10,10,10,10,10],m=0;function g(t){s-=v[t],y[t]=v[t],v[t]=Math.ceil(1.5*v[t]),M()}function M(){document.getElementById("s").textContent=`Score: ${f}`,document.getElementById("m").textContent=`Money: ${s}`}function b(t,n,o,l,i){e.shadowColor="rgba(255, 255, 255, 0.7)",e.shadowBlur=20,e.beginPath(),e.ellipse(t,n,o,l,0,0,2*Math.PI),e.fillStyle=i,e.fill(),e.closePath(),e.shadowBlur=0}function x(t=0,e=100){return Math.floor(Math.random()*(e-t+1))+t}window._a=function(){s>=v[0]&&(n*=.75,g(0))},window._b=function(){s>=v[1]&&(i+=2,g(1))},window._c=function(){s>=v[2]&&(a+=5,g(2))},window._d=function(){s>=v[3]&&(c+=5,g(3))},window._e=function(){s>=v[4]&&(u+=2,g(4))},window._f=function(){s>=v[5]&&(w+=2,g(5))},document.addEventListener("keydown",(e=>"k"==e.key&&void(l<i&&(o.push({x:x(a+100,t.width-a-50),y:x(a-100,t.height+a+50),vel:[x(-10,10),x(-15,-10)],fillCol:`rgb(${x(0,255)}, ${x(0,255)}, ${x(0,255)})`,rX:a,rY:a}),l++)))),t.addEventListener("mousemove",(function(e){const n=t.getBoundingClientRect();d=e.clientX-n.left,r=e.clientY-n.top})),t.addEventListener("mousedown",(function(){h=u,o.forEach((t=>{const e=d-t.x,n=r-t.y,o=Math.atan2(n,e),l=t.x+t.rX*Math.cos(o),i=t.y+t.rY*Math.sin(o);Math.hypot(l-d,i-r)<=c+5&&(t.vel=[x(-10,-20),x(-10,-20)],f++,s+=w,M(),h--)}))})),function i(){setTimeout((()=>{e.fillStyle="black",e.fillRect(0,0,t.width,t.height),o.forEach(((e,i)=>{e.vel[1]+=n,(e.x<e.rX||e.x>t.width-e.rX)&&(e.vel[0]*=-1),e.y<e.rY&&(e.vel[1]=Math.abs(e.vel[1])),e.y>t.width&&(m++,o.splice(i,1),m==l&&(alert("You fumbled your balls!"),f=l=m=0,M())),e.x+=e.vel[0],e.y+=e.vel[1],e.rX=a+Math.abs(e.vel[0])/2,e.rY=a+Math.abs(e.vel[1])/2})),o.forEach((t=>b(t.x,t.y,t.rX,t.rY,t.fillCol))),b(d,r,c,c,"rgba(255, 50, 50, 0.5)"),i()}),10)}();</script>
+  <p>Press k,spawn ball,keep juggling</p>
+  <canvas id="q" width="1200" height="525"></canvas>
+  <script>const t=document.getElementById("q"),e=t.getContext("2d");let n=10,o=.35,l=[],i=0,c=1,a=20,d=60,h=0,r=0,f=1,u=1,s=0,w=0,m=1,y=[n,n,n,n,n,n],v=[n,n,n,n,n,n],g=0;const M=["_a","_b","_c","_d","_e","_f","_j"];function _(t){w-=v[t],y[t]=v[t],v[t]=Math.ceil(1.5*v[t]),M.forEach(((t,e)=>document.getElementById(t).textContent=document.getElementById(t).textContent.replace(`(${y[e]})`,`(${v[e]})`))),x()}function x(){document.getElementById("s").textContent=`Score:${s}`,document.getElementById("m").textContent=`$${w}`}function E(t,n,o,l,i){e.shadowColor="rgba(255, 255, 255, 0.7)",e.shadowBlur=20,e.beginPath(),e.ellipse(t,n,o,l,0,0,2*Math.PI),e.fillStyle=i,e.fill(),e.closePath(),e.shadowBlur=0}function b(t=0,e=100){return Math.floor(Math.random()*(e-t+1))+t}window._a=function(){w>=v[0]&&(o*=1.25,_(0))},window._b=function(){w>=v[1]&&(c+=2,_(1))},window._c=function(){w>=v[2]&&(a+=5,_(2))},window._d=function(){w>=v[3]&&(d+=5,_(3))},window._e=function(){w>=v[4]&&(u+=2,_(4))},window._f=function(){w>=v[5]&&(m+=2,_(5))},window._j=function(){if(confirm("Confirm?")){const t=b(0,100);w=t<2?100*w:t<=20?Math.ceil(1.25*w):t<=50?Math.ceil(.75*w):t<=75?Math.ceil(.25*w):0,x()}},document.addEventListener("keydown",(e=>"k"==e.key&&void(i<c&&(l.push({x:b(a+100,t.width-a-50),y:b(a-100,t.height+a+50),vel:[b(-n,n),b(-15,-n)],fillCol:`rgb(${b(0,255)},${b(0,255)},${b(0,255)})`,rX:a,rY:a}),i++)))),t.addEventListener("mousemove",(function(e){const n=t.getBoundingClientRect();h=e.clientX-n.left,r=e.clientY-n.top})),t.addEventListener("mousedown",(function(){f=u,l.forEach((t=>{const e=h-t.x,o=r-t.y,l=Math.atan2(o,e),i=t.x+t.rX*Math.cos(l),c=t.y+t.rY*Math.sin(l);Math.hypot(i-h,c-r)<=d+5&&(t.vel=[b(-n,-20),b(-n,-20)],s++,w+=m,x(),f--)}))})),function c(){setTimeout((()=>{e.fillStyle="black",e.fillRect(0,0,t.width,t.height),l.forEach(((e,n)=>{e.vel[1]+=o,(e.x<e.rX||e.x>t.width-e.rX)&&(e.vel[0]*=-1),e.y<e.rY&&(e.vel[1]=Math.abs(e.vel[1])),e.y>t.width&&(g++,l.splice(n,1),g==i&&(alert("Balls fumbled!"),s=i=g=0,x())),e.x+=e.vel[0],e.y+=e.vel[1],e.rX=a+Math.abs(e.vel[0])/2,e.rY=a+Math.abs(e.vel[1])/2})),l.forEach((t=>E(t.x,t.y,t.rX,t.rY,t.fillCol))),E(h,r,d,d,"rgba(255, 50, 50, 0.5)"),c()}),n)}();</script>
 </body>
 </html>
