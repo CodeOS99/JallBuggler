@@ -1,5 +1,5 @@
 # JallBuggler
 Jall Buggler is a short game, made to fit within a qr code,
-![FinalSayCheeseQrCodeJallBuggler](https://github.com/user-attachments/assets/2b2e5511-250f-4e3f-9579-c9012af45526)
+![BallJugglingJallBuggler](https://github.com/user-attachments/assets/358c4bdf-2a5b-4bc3-97be-63f5215c4cfe)
 
 Play it by scanning the qr and pasting the code in your browser.
